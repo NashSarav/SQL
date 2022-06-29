@@ -1,0 +1,60 @@
+CREATE TABLE book_store (id INTEGER PRIMARY KEY, book_title TEXT, author TEXT, genre TEXT, inventory INTEGER, price INTEGER); 
+
+INSERT INTO book_store VALUES
+(1, "Feeling Is The Secret", "Neville Goddard", "Self-help", 7, 4.99),
+(2, "The Midnight Library", "Matt Haig", "Fantasy Fiction", 4, 13.29),
+(3, "Layla", "Colleen Hoover", "Mystery", 10, 11.96),
+(4, "A Good Girl's Guide to Murder", "Holly Jackson", "Mystery", 4, 13.77),
+(5, "Good Girl, Bad Blood", "Holly Jackson", "Mystery", 13, 8.41),
+(6, "As Good As Dead", "Holly Jackson", "Mystery", 16, 12.99),
+(7, "Heart Bones", "Colleen Hoover", "Romance", 5, 13.49),
+(8, "Verity", "Colleen Hoover", "Mystery", 19, 14.50),
+(9, "It Ends With Us", "Colleen Hoover", "Romance", 12, 10.26),
+(10, "Atomic Habits", "James Clear", "Self-help", 17, 11.98),
+(11, "What a Time to Be Alone", "Chidera Eggerue", "Self-help", 12, 15.99),
+(12, "The Inner Work", "Mathew Micheletti", "Self-help", 8, 17.99),
+(13, "The Mountain is You", "Brianna Wiest", "Self-help", 6, 17.99), 
+(14, "The Truth Of You", "Iain S. Thomas", "Poetry", 22, 8.81),
+(15, "Flowers on the Moon", "Billy Chapata", "Poetry", 19, 10.84); 
+
+-- All books available in store ordered by price 
+SELECT * FROM book_store 
+ORDER BY price; 
+
+-- 5 most expensive books 
+SELECT book_title, price
+FROM book_store
+ORDER BY price DESC
+LIMIT 5; 
+
+-- 5 least expensive books 
+SELECT booK_title, price
+FROM book_store
+ORDER BY price
+LIMIT 5; 
+
+-- All available Mystery books, highest to lowest price 
+SELECT * FROM book_store
+WHERE genre = "Mystery"
+ORDER BY price DESC; 
+
+-- Total number of books in store 
+SELECT SUM(inventory) AS num_of_books_instore
+FROM book_store; 
+
+-- Total number of books grouped by author
+SELECT author, SUM(inventory) 
+FROM book_store
+GROUP BY author; 
+
+-- Total price if customer were to buy all books in a genre 
+SELECT genre, SUM(price) AS total_price
+FROM book_store
+GROUP BY genre
+ORDER BY total_price; 
+
+-- Average price of books in a genre  
+SELECT genre, AVG(price) AS average_price_of_book
+FROM book_store
+GROUP BY genre
+ORDER BY average_price_of_book; 

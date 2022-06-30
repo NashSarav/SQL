@@ -1,4 +1,4 @@
 # Nash Saravanan's SQL Portfolio
 
-## Welcome to my SQL Portfolio! This code repository contains examples of SQL I've written. Feel free to take a look and reach out via email if you have any questions or need any additional information:
+## Welcome to my SQL Portfolio! This portfolio contains examples of SQL I've written. Reach out via email if you have any questions:
 nash.sarav@gmail.com

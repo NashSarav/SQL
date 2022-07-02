@@ -1,0 +1,48 @@
+/** In this project, you're going to make your own table with some small set of "famous people", then make more tables about things they do and join those to create readable lists **/ 
+
+CREATE TABLE disney_stars (
+    id INTEGER PRIMARY KEY AUTOINCREMENT, 
+    name TEXT, 
+    age INTEGER, 
+    net_worth INTEGER);
+
+INSERT INTO disney_stars (name, age, net_worth) VALUES
+("Selena Gomez", 29, 85000000),
+("Miley Cyrus", 29, 160000000),
+("Demi Lovato", 29, 40000000),
+("Joe Jonas", 32, 40000000),
+("Zendaya Coleman", 25, 15000000),
+("Nick Jonas", 29, 50000000), 
+("Cole Sprouse", 29, 48000000),
+("Raven-Symone", 36, 55000000);
+
+CREATE TABLE disney_show (
+    id INTEGER PRIMARY KEY AUTOINCREMENT, 
+    star_id INTEGER,
+    show TEXT,
+    start_year INTEGER, 
+    end_year INTEGER); 
+
+INSERT INTO disney_show (star_id, show, start_year, end_year) VALUES
+(1, "Wizards of Waverly Place",  2007, 2012),
+(2, "Hannah Montana", 2006, 2011),
+(3, "Sonny with a Chance", 2009, 2011),
+(4, "Jonas", 2009, 2010),
+(5, "Shake It Up", 2010, 2013),
+(6, "Jonas", 2009, 2010),
+(7, "The Suite Life of Zack and Cody", 2005, 2008),
+(8, "That's So Raven", 2003, 2007); 
+
+-- display disney star and disney show they starred in 
+
+SELECT disney_stars.name AS disney_star, disney_show.show
+FROM disney_stars
+JOIN disney_show 
+ON disney_stars.id = disney_show.star_id; 
+
+-- display show, start year, end year, and featured disney star 
+
+SELECT disney_show.show, disney_show.start_year, disney_show.end_year, disney_stars.name AS disney_star 
+FROM disney_show
+JOIN disney_stars
+ON disney_show.star_id = disney_stars.id; 

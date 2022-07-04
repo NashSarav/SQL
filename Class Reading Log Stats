@@ -1,0 +1,40 @@
+-- create a reading log table for the class and insert values
+
+CREATE TABLE class_reading_log_app (
+id INTEGER PRIMARY KEY,
+reader_name TEXT, 
+book_title TEXT,
+author TEXT,
+reading_status TEXT); 
+
+INSERT INTO class_reading_log_app (reader_name, book_title, author, reading_status) VALUES 
+("Martha Veniel", "Twilight", "Stephenie Meyer", "Finished"), 
+("Max Reinhart", "Of Mice and Men", "John Steinbeck", "Finished"),
+("Kevin McCormick", "Animal Farm", "George Orwell", "reading"),
+("Lucy Winfell", "1984", "George Orwell", "Finished"),
+("Tim Mayfield", "The Great Gatsby", "F. Scott Fitzgerald", "reading"); 
+
+-- add a column to show how many hours students spent reading their book 
+
+ALTER TABLE class_reading_log_app ADD hours_spent_reading INTEGER default "unknown"; 
+
+UPDATE class_reading_log_app SET hours_spent_reading = 27 WHERE id = 1;
+UPDATE class_reading_log_app SET hours_spent_reading = 11 WHERE id = 2;
+UPDATE class_reading_log_app SET hours_spent_reading = 6 WHERE id = 4;
+
+SELECT * FROM class_reading_log_app; 
+
+-- Kevin and Tim finished reading their book. Kevin logged in 10 hours and Tim logged in 14 hours 
+
+UPDATE class_reading_log_app SET reading_status = "Finished" WHERE id = 3;
+UPDATE class_reading_log_app SET hours_spent_reading = 10 WHERE id = 3; 
+UPDATE class_reading_log_app SET reading_status = "Finished" WHERE id = 5;
+UPDATE class_reading_log_app SET hours_spent_reading = 14 WHERE id = 5; 
+
+SELECT * FROM class_reading_log_app; 
+
+-- Lucy moved and will no longer be in this class 
+
+DELETE FROM class_reading_log_app WHERE id = 4;
+
+SELECT * FROM class_reading_log_app; 
